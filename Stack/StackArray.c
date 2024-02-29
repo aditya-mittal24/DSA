@@ -13,12 +13,6 @@ void Create(struct Stack* st){
     scanf("%d", &st->size);
     st->top = -1;
     st->s = (int *)malloc(st->size * sizeof(int));
-    int el;
-    for(int i=0;i<st->size;i++){
-        printf("Enter element %d: ",i+1);
-        scanf("%d",&el);
-        st->s[i] = el;
-    }
 }
 
 void Display(struct Stack st){
@@ -27,7 +21,7 @@ void Display(struct Stack st){
     }
 }
 
-void push(struct Stack *st, int val)
+void Push(struct Stack *st, int val)
 {
     if (st->top == st->size - 1)
         printf("Stack Overflow!");
@@ -38,7 +32,7 @@ void push(struct Stack *st, int val)
     }
 }
 
-int pop(struct Stack *st){
+int Pop(struct Stack *st){
     int el = -1;
     if (st->top==-1)
         printf("Stack Underflow!");
@@ -49,7 +43,7 @@ int pop(struct Stack *st){
     return el;
 }
 
-int peak(struct Stack st, int pos){
+int Peak(struct Stack st, int pos){
     int x=-1;
     if (st.top<pos)
         printf("Invalid Position\n");
@@ -73,7 +67,7 @@ int isEmpty(struct Stack st){
         return 0;
 }
 
-int top(struct Stack st) {
+int stackTop(struct Stack st) {
     if (st.top==-1)
         return -1;
     else
@@ -84,5 +78,13 @@ int main()
 {
     struct Stack st;
     Create(&st);
+    printf("%d\n", isEmpty(st));
+    Push(&st, 1);
+    Push(&st, 2);
+    printf("%d\n", Peak(st,0));
+    printf("%d\n", stackTop(st));
+    Push(&st, 3);
+    Push(&st, 4);
+    printf("%d\n", isFull(st));
     Display(st);
 }
