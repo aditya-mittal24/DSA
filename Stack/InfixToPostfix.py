@@ -40,4 +40,33 @@ def InfixToPostfix(expr: str) -> str:
         res += st.pop()
     return res
 
-print(InfixToPostfix('a+b*c-d/e'))
+def InfixToPostfix2(infix: str) -> str:
+    st = Stack()
+    st.s = [''] * len(infix)
+    prec = {
+        '+': [1,2],
+        '-': [1,2],
+        '*': [3,4],
+        '/': [3,4],
+        '^': [6,5],
+        '(': [7,0],
+        ')': [0,0],
+    }
+    postfix = ""
+    for c in infix:
+        if c in prec:
+            while not st.isEmpty():
+                if prec[st.stackTop()][1]==prec[c][0]:
+                    st.pop()
+                elif prec[st.stackTop()][1]>prec[c][0]:
+                    postfix += st.pop()
+                else:
+                    break
+            if c!=')': st.push(c)
+        else:
+            postfix += c
+    while not st.isEmpty():
+        postfix += st.pop()
+    return postfix
+
+print(InfixToPostfix2('A-B-D*E/F+B*C'))
