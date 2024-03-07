@@ -69,4 +69,4 @@ def InfixToPostfix2(infix: str) -> str:
         postfix += st.pop()
     return postfix
 
-print(InfixToPostfix2('A-B-D*E/F+B*C'))
+# print(InfixToPostfix2('A-B-D*E/F+B*C'))
